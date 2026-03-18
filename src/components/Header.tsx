@@ -13,6 +13,7 @@ export default function Header() {
   const [walletOpen, setWalletOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [notifOpen, setNotifOpen] = useState(false)
 
   const balance = user?.balance ?? 0
 
@@ -72,6 +73,22 @@ export default function Header() {
         }}>
           + {t('btn_deposit')}
         </button>
+
+        {/* Bell */}
+        <div style={{ position: 'relative' }}>
+          <button onClick={() => setNotifOpen(o => !o)} style={{ background: '#0f212e', border: 'none', borderRadius: 8, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', position: 'relative' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" stroke="#8a9bb0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <span style={{ position: 'absolute', top: 6, right: 6, width: 7, height: 7, borderRadius: '50%', background: '#ef4444', border: '1.5px solid #1a2c38' }} />
+          </button>
+          {notifOpen && (
+            <div style={{ position: 'absolute', right: 0, top: 44, background: '#1a2c38', border: '1px solid #2d4a5a', borderRadius: 14, padding: 16, minWidth: 240, zIndex: 200, boxShadow: '0 8px 32px rgba(0,0,0,.4)' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', marginBottom: 12 }}>Сповіщення</div>
+              <div style={{ fontSize: 12, color: '#8a9bb0', textAlign: 'center', padding: '12px 0' }}>Поки немає сповіщень</div>
+            </div>
+          )}
+        </div>
 
         {/* Profile */}
         <div style={{ position: 'relative' }}>
